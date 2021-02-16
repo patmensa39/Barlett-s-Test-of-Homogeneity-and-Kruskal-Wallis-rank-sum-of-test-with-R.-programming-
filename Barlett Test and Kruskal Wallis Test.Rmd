@@ -1,0 +1,50 @@
+---
+title: "Design of experiment"
+output:
+  pdf_document: default
+  html_document: default
+  word_document: default
+date: "January, 2020"
+theme: cerulean
+---
+
+
+## Name: Mensah Patrick
+
+
+```{r}
+
+### 3.40 Barlett test of Homogeneity of variance.  
+catalyst<-c(rep("1",5), rep("2",4), rep("3",3), rep("4",4))
+concentration<-c(58.2, 57.2, 58.4,55.8,54.9,56.3,54.5,57.0,55.3,50.1,54.2,55.4,52.9,49.9,50.0,51.7)
+data.frame(catalyst, concentration)
+bartlett.test(concentration~catalyst)
+
+### b. Analysis of Variance. 
+anova<-aov(concentration~catalyst)
+summary(anova)
+
+### c. Residuals 
+fit<-lm(concentration~catalyst)
+plot(fit$residuals, main = "Residual Plot", ylab = "Residuals", pch=20)
+abline(h=0, col="red" )
+plot(anova)
+
+```
+
+
+```{r}
+
+### 3.40 Kruskal Wallis Test 
+Circuit_type<-c(rep("1",5), rep("2",5), rep("3",5))
+Response_time<-c(9,12,10,8,15,20,21,23,17,30,6,5,8,16,7)
+data.frame(Circuit_type,Response_time)
+kruskal.test(Response_time~Circuit_type)
+
+anova1<-aov(Response_time~Circuit_type)
+summary(anova1)
+```
+
+
+
+
